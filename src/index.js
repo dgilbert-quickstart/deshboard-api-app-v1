@@ -1,6 +1,11 @@
 const express = require("express");  
 const cors = require("cors");  
 const app = express();  
+const bodyParser = require("body-parser");
+
+//- node middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //cors allow access to same site or other localhost 
 app.use(cors()) 
@@ -43,6 +48,27 @@ app.get("/login/:username/:password", (req, res) => {
 
     //return json result 
     res.send(_data);
+});
+
+app.post("/register", (req, res) => {
+
+    const _body = req.body;
+
+    let _msg = `# register route, body: ${JSON.stringify(_body)}`;
+    console.log(_msg);
+
+    let _return = {};
+
+    const _username = _body.username;
+    const _password = _body.password;
+
+    //insert user row 
+
+    _msg = "* registration successful";
+    _return = { msg: _msg, register: true };
+
+     res.send(_return);
+
 });
 
 //-other - POST, DELETE, PUT
