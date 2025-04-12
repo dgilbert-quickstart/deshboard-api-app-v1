@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const { login, insert_user } = require("./dbutil");
 
 //- node middleware
+//-- optinal for some versions of nodejs
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
